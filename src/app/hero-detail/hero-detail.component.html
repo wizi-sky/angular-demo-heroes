@@ -1,0 +1,13 @@
+<button (click)="goBack()">返回</button>
+<div style="color:red">{{hero?.name}}</div><div>{{test}}</div>
+<div *ngIf="hero">
+  <h2>{{hero.name | uppercase}} Details</h2>
+  <div>id: {{hero.id}}</div>
+  <div>
+    <label for="hero-name">Hero name: </label>
+    <input id="hero-name" [(ngModel)]="hero.name" placeholder="name">
+
+    <!-- <button (click)="clickBtn(hero)">点击通知父组件</button> -->
+    <button (click)="save()">保存修改</button>
+  </div>
+</div>
