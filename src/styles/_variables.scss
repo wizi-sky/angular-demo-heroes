@@ -1,0 +1,34 @@
+$print-page-size: auto;
+$brand-primary: #00674b;
+
+$brand-limegreen: #67b52f;
+$brand-dark-black: #4d4d4d;
+$brand-cbre-blue: #00b2dd;
+$brand-cbre-magenta: #ec008c;
+$brand-cbre-orange: #f58220;
+$brand-cbre-purple: #a23f97;
+$brand-cbre-yellow: #ffdd00;
+
+$table-background: #f6f4ef;
+
+$primary: $brand-primary;
+$secondary: $brand-dark-black;
+$success: $brand-limegreen;
+$info: $brand-cbre-blue;
+$warning: $brand-cbre-orange;
+$danger: $brand-cbre-magenta;
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 600px,
+  md: 960px,
+  lg: 1280px,
+  xl: 1920px
+);
+
+@mixin main-component-common() {
+  :host {
+    display: block;
+    padding: 0 0.8rem;
+  }
+}
