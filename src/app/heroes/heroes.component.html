@@ -17,6 +17,17 @@
 <!-- 列表 -->
 <h2>My Heroes</h2>
 
+<!-- 添加 -->
+<div>
+  <label for="new-hero">Hero name: </label>
+  <input id="new-hero" #heroName />
+
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button type="button" class="add-button" (click)="add(heroName.value); heroName.value=''">
+    Add hero
+  </button>
+</div>
+
 <!-- 详情 -->
 <!-- 父组件通过子组件的自定义事件监听 -->
 <!-- $event必须要加 -->
@@ -32,6 +43,8 @@
     <a routerLink="/detail/{{hero.id}}">
       <span class="badge">{{hero.id}}</span> {{hero.name}}
     </a>
+
+    <button (click)="delete(hero)">删除</button>
   </li>
 </ul>
 
