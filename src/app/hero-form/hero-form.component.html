@@ -1,0 +1,60 @@
+<div [hidden]="submitted">
+
+
+
+  <!-- 提交表单后，Angular 会将 ng-submitted 类应用于 form 元素。此类可用于在提交后更改表单的样式。 -->
+  <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+    {{ model | json }}
+    <div class="form-group">
+      <label for="name">Name</label>
+      <!-- // 注意，每个 <input> 元素都有一个 id 属性。<label> 元素的 for 属性用它来把标签匹配到输入控件。这是一个标准的 HTML 特性 -->
+      <!-- // 每个 <input> 元素都有一个必需的 name 属性，Angular 用它来注册表单中的控件 -->
+      <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name" #name="ngModel">
+      <!-- 属性解析===！！！！！！！！！！ -->
+      <!--
+          type="text" // input属性指定输入框的类型
+          required    // input 的属性，表示该输入框必填
+          id="name"   // 输入框的名字，用于label的绑定，与lable的属性for相配合
+          [(ngModel)]="model.name" // 双向绑定的属性值
+          #name="ngModel"  // 模板引用变量扩展，可以通过#绑定的键名直接获取ngModel绑定的值在模板中使用
+         -->
+      <!-- 使用模板引用变量扩展 <input> 标签，你可以用来从模板中访问输入框的 Angular 控件。在这个例子中，该变量是 #name="ngModel"。 -->
+      <div [hidden]="name.valid || name.pristine" class="alert alert-danger">Name is required</div>
+    </div>
+
+    <div class="form-group">
+      <label for="alterEgo">Alter Ego</label>
+      <input type="text" class="form-control" id="alterEgo" [(ngModel)]="model.alterEgo" name="alterEgo">
+    </div>
+
+    <div class="form-group">
+      <label for="power">Hero Power</label>
+      <select class="form-control" id="power" required [(ngModel)]="model.power" name="power">
+        <option *ngFor="let pow of powers" [value]="pow">{{pow}}</option>
+      </select>
+    </div>
+
+    <button type="button" class="btn btn-default" (click)="newHero();heroForm.reset()">New Hero</button>
+
+    <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Submit</button>
+  </form>
+
+</div>
+
+<div [hidden]="!submitted">
+  <h2>You submitted the following:</h2>
+  <div class="row">
+    <div class="col-xs-3">Name</div>
+    <div class="col-xs-9">{{ model.name }}</div>
+  </div>
+  <div class="row">
+    <div class="col-xs-3">Alter Ego</div>
+    <div class="col-xs-9">{{ model.alterEgo }}</div>
+  </div>
+  <div class="row">
+    <div class="col-xs-3">Power</div>
+    <div class="col-xs-9">{{ model.power }}</div>
+  </div>
+  <br>
+  <button type="button" class="btn btn-primary" (click)="submitted=false">Edit</button>
+</div>
